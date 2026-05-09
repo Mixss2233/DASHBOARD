@@ -3,339 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>P3TO STORE OFFICIAL | Custom Banner Discord</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>P3TO STORE | Maintenance</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #050505;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            color: #f0f0f0;
-        }
-        .font-heading { font-family: 'Space Grotesk', sans-serif; }
-        
-        .radial-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 10%, #0b2b26 0%, #000000 80%);
-            z-index: -2;
-        }
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .step-container { display: none; opacity: 0; transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1); }
-        .step-active { display: flex; opacity: 1; }
-        
-        .glass-card {
-            background: rgba(10, 10, 15, 0.6);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 2rem;
-        }
-        .glow-input {
-            background: rgba(0,0,0,0.7);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 2rem;
-            transition: all 0.25s ease;
-            color: white;
-            padding: 0.9rem 1.5rem;
-            width: 100%;
-            font-size: 1rem;
-        }
-        .glow-input:focus {
-            outline: none;
-            border-color: #10b981;
-            box-shadow: 0 0 15px rgba(16,185,129,0.2);
-            background: #0a0a0c;
-        }
-        .btn-luxury {
-            background: linear-gradient(135deg, #ffffff 0%, #d4d4d8 100%);
-            color: #000;
-            font-weight: 700;
-            transition: all 0.4s ease;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.1em;
-        }
-        .btn-luxury:hover {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            box-shadow: 0 15px 35px -10px rgba(16,185,129,0.5);
-            transform: translateY(-3px);
-        }
-        .catalog-item {
-            background: rgba(15, 25, 22, 0.5);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 2rem;
-            transition: all 0.4s;
-            cursor: pointer;
-        }
-        .catalog-item:hover {
-            border-color: #10b981;
-            transform: translateY(-12px);
-            background: rgba(16,185,129,0.08);
-            box-shadow: 0 30px 40px -20px rgba(0,0,0,0.8);
-        }
-        .flip-card {
-            perspective: 1800px;
-            width: 100%;
-            height: 380px;
-        }
-        .flip-card-inner {
+            background: linear-gradient(135deg, #0a0f0d 0%, #000000 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Poppins', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
             position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            transform-style: preserve-3d;
+            overflow: hidden;
         }
-        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-front, .flip-back {
+
+        /* animasi background glow */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
+            animation: pulseGlow 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        /* grid pattern halus */
+        body::after {
+            content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden;
-            border-radius: 2rem;
-            padding: 1.8rem;
-            background: rgba(0,0,0,0.45);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(16,185,129,0.2);
+            top: 0;
+            left: 0;
+            background-image: 
+                linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
         }
-        .flip-back { transform: rotateY(180deg); }
-        
-        .modal-glass {
-            background: rgba(5,5,10,0.95);
-            backdrop-filter: blur(28px);
-            border: 1px solid rgba(16,185,129,0.3);
-            border-radius: 2.5rem;
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
         }
-        .file-zone {
-            border: 1px dashed rgba(16,185,129,0.4);
-            border-radius: 1.5rem;
-            background: rgba(16,185,129,0.03);
-            transition: all 0.2s;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .file-zone:hover { border-color: #10b981; background: rgba(16,185,129,0.08); }
+
+        /* icon animasi */
+        .icon-wrapper {
+            margin-bottom: 2rem;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .icon {
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+        }
+
+        /* teks utama */
+        .main-text {
+            font-size: clamp(1.8rem, 8vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #10b981 40%, #34d399 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s linear infinite;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* teks secondary */
+        .sub-text {
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            word-spacing: 0.3em;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #10b981, #34d399, #10b981, transparent);
+            margin: 2rem auto 0;
+            animation: expandWidth 1.5s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; opacity: 0; }
+            to { width: 80px; opacity: 1; }
+        }
+
+        /* decorative dots */
+        .dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #10b981;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: blinkDot 2s infinite;
+        }
+
+        @keyframes blinkDot {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* floating particles */
+        .particle {
+            position: absolute;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 12s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0) scale(1); opacity: 0; }
+            20% { opacity: 0.5; }
+            80% { opacity: 0.3; }
+            100% { transform: translate(var(--tx, 100px), var(--ty, -100px)) scale(0); opacity: 0; }
+        }
     </style>
 </head>
 <body>
-<div class="radial-glow"></div>
-<div class="noise-overlay"></div>
 
-<!-- STEP 1 : LANDING -->
-<section id="step1" class="step-container step-active min-h-screen flex-col justify-center items-center px-6 relative">
-    <div class="max-w-6xl text-center mx-auto relative z-10">
-        <div class="inline-block mb-6 px-6 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-sm">
-            <span class="text-[9px] font-bold tracking-[0.3em] text-emerald-400 uppercase">Exclusive Hub</span>
+    <!-- decorative dots -->
+    <div class="dot" style="top: 15%; left: 10%;"></div>
+    <div class="dot" style="top: 25%; right: 15%; animation-delay: 0.5s;"></div>
+    <div class="dot" style="bottom: 20%; left: 20%; animation-delay: 1s;"></div>
+    <div class="dot" style="bottom: 35%; right: 25%; animation-delay: 0.3s;"></div>
+    <div class="dot" style="top: 50%; left: 5%; animation-delay: 0.8s;"></div>
+    <div class="dot" style="top: 70%; right: 8%; animation-delay: 1.2s;"></div>
+
+    <!-- floating particles -->
+    <div class="particle" style="width: 150px; height: 150px; top: -50px; left: -50px; --tx: 200px; --ty: 150px; animation-duration: 15s;"></div>
+    <div class="particle" style="width: 100px; height: 100px; bottom: -30px; right: -30px; --tx: -150px; --ty: -100px; animation-duration: 12s; animation-delay: 2s;"></div>
+    <div class="particle" style="width: 200px; height: 200px; top: 40%; right: -80px; --tx: -250px; --ty: 50px; animation-duration: 18s; animation-delay: 4s;"></div>
+    <div class="particle" style="width: 80px; height: 80px; bottom: 20%; left: -40px; --tx: 180px; --ty: -80px; animation-duration: 10s; animation-delay: 1s;"></div>
+
+    <div class="container">
+        <div class="icon-wrapper">
+            <div class="icon">🔧</div>
         </div>
-        <h1 class="font-heading text-7xl md:text-8xl lg:text-[120px] font-extrabold tracking-tighter leading-[1.1] mb-8 bg-gradient-to-r from-white via-emerald-100 to-neutral-500 bg-clip-text text-transparent">
-            P3TO STORE<br>ELITE
-        </h1>
-        <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base mb-10 tracking-wide">Situs nomor 1 untuk Custom Banner eksklusif — aman, cepat, tepercaya.</p>
-        <button onclick="goToCustomBanner()" class="btn-luxury px-12 py-5 rounded-full text-sm font-bold tracking-widest uppercase shadow-2xl">
-            ✦ PESAN CUSTOM BANNER ✦
-        </button>
-        <div class="absolute bottom-12 left-0 right-0 text-center text-[10px] text-emerald-700/60 tracking-widest">P3TO COMMUNITY • 2025</div>
+        
+        <div class="main-text">
+            Custom Banner<br>Sedang Ditutup Sementara!
+        </div>
+        
+        <div class="sub-text">
+            ⚡ Maaf atas ketidaknyamanannya ⚡
+        </div>
+        
+        <div class="divider"></div>
     </div>
-</section>
 
-<!-- PANEL CUSTOM BANNER -->
-<section id="customBannerPanel" class="step-container min-h-screen py-24 px-6 md:px-12 lg:px-24 flex-col justify-center">
-    <div class="max-w-7xl mx-auto w-full mb-6 ps-2">
-        <button onclick="goToStep1()" class="text-gray-400 hover:text-emerald-400 transition text-xs font-mono tracking-widest">← Kembali ke Beranda</button>
-    </div>
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        <div class="space-y-10">
-            <div class="bg-gradient-to-r from-emerald-900/20 to-transparent p-6 rounded-2xl border-l-4 border-emerald-500">
-                <span class="text-emerald-400 text-sm font-mono">⭐ PREMIUM CUSTOM</span>
-                <h2 class="font-heading text-4xl font-bold mt-1">Banner <span class="text-emerald-400">Eksklusif</span></h2>
-                <p class="text-gray-400 text-sm mt-2">Desain sesuai permintaan, hasil maksimal & unik</p>
-            </div>
-            <div class="space-y-6">
-                <div><label class="block text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-2">Nama (Opsional)</label><input type="text" id="inputUser" class="glow-input" placeholder="Masukan nama custom"></div>
-                <div><label class="block text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-2">Request Kata (tetap di banner)</label><input type="text" id="inputQuote" class="glow-input" placeholder="Motivasi / kutipan di banner"></div>
-                <div><label class="block text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-2">ID Discord <span class="text-rose-400">*WAJIB</span></label><input type="text" id="inputIDBanner" class="glow-input" placeholder="Contoh: 123456789012345678"></div>
-            </div>
-            <div class="flex flex-row justify-between items-center pt-6 border-t border-white/10">
-                <div><p class="text-[11px] text-gray-400 font-mono">TOTAL TAGIHAN</p><p class="text-5xl font-heading font-bold text-emerald-400">IDR 25K</p></div>
-                <button onclick="preparePayment('custom_banner')" class="btn-luxury px-10 py-4 rounded-full text-xs font-bold tracking-widest">Bayar & Upload</button>
-            </div>
-        </div>
-        <!-- Flip card tutorial -->
-        <div class="flip-card" id="discordFlip">
-            <div class="flip-card-inner">
-                <div class="flip-front flex flex-col justify-between">
-                    <div class="flex justify-between items-start"><div><h4 class="text-xl font-bold tracking-tight">💻 Tutorial PC</h4><p class="text-emerald-400 text-[9px] uppercase tracking-widest">Ambil ID Discord</p></div><button onclick="toggleFlip(event)" class="bg-white/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-full text-[8px] font-bold uppercase tracking-wide transition-all border border-white/10">Mode Mobile ⟳</button></div>
-                    <ul class="mt-6 space-y-4 text-gray-300 text-sm"><li class="flex gap-3"><span class="text-emerald-500 font-bold">01.</span> Buka pengaturan (gear) di Discord PC.</li><li class="flex gap-3"><span class="text-emerald-500 font-bold">02.</span> Pilih "Advanced" di sidebar.</li><li class="flex gap-3"><span class="text-emerald-500 font-bold">03.</span> Aktifkan "Developer Mode".</li><li class="flex gap-3"><span class="text-emerald-500 font-bold">04.</span> Klik kanan profil → Copy User ID.</li></ul>
-                </div>
-                <div class="flip-back flex flex-col justify-between">
-                    <div class="flex justify-between items-start"><div><h4 class="text-xl font-bold tracking-tight">📱 Tutorial Mobile</h4><p class="text-emerald-400 text-[9px] uppercase tracking-widest">Ambil ID Discord</p></div><button onclick="toggleFlip(event)" class="bg-white/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-full text-[8px] font-bold uppercase tracking-wide transition-all border border-white/10">Mode Desktop ⟳</button></div>
-                    <ul class="mt-6 space-y-4 text-gray-300 text-sm"><li class="flex gap-3"><span class="text-emerald-500 font-bold">01.</span> Tap foto profil (kanan bawah).</li><li class="flex gap-3"><span class="text-emerald-500 font-bold">02.</span> Masuk ke Settings (gear).</li><li class="flex gap-3"><span class="text-emerald-500 font-bold">03.</span> Advanced → Developer Mode ON.</li><li class="flex gap-3"><span class="text-emerald-500 font-bold">04.</span> Tap tiga titik di profil → Copy ID.</li></ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- MODAL QRIS & UPLOAD -->
-<div id="qrisModal" class="fixed inset-0 bg-black/95 backdrop-blur-2xl z-[999] hidden items-center justify-center opacity-0 transition-opacity duration-400" onclick="closeModalOutside(event)">
-    <div class="modal-glass p-8 max-w-lg w-full relative mx-4 rounded-3xl" onclick="event.stopPropagation()">
-        <div id="qrisStep1" class="text-center">
-            <h3 class="text-2xl font-heading font-bold mb-2 uppercase tracking-widest">Pembayaran</h3>
-            <p class="text-[10px] text-emerald-400 mb-6">SCAN QRIS UNTUK TRANSFER</p>         
-            <div class="bg-white rounded-2xl inline-block mb-8 shadow-[0_0_50px_rgba(16,185,129,0.2)] overflow-hidden w-56 h-56">
-                <img src="Qris 88Management.jpeg" alt="QRIS" class="w-full h-full object-cover">
-            </div>
-            <div class="space-y-4">
-                <button onclick="showConfirmationStep()" class="w-full btn-luxury font-bold py-4 rounded-2xl text-xs tracking-widest uppercase">Konfirmasi Pembayaran</button>
-                <button onclick="toggleQRIS(false)" class="w-full bg-white/5 text-gray-500 hover:text-white py-4 rounded-2xl text-[10px] tracking-widest uppercase transition-all">Batalkan Transaksi</button>
-            </div>
-        </div>
-        <div id="qrisStep2" class="hidden">
-            <h3 class="text-2xl font-heading font-bold mb-2">Upload File</h3>
-            <p class="text-[10px] text-emerald-500 font-bold uppercase tracking-widest mb-6">Verifikasi Pembayaran</p>
-            <div class="space-y-6">
-                <div><label class="block text-[9px] text-gray-500 uppercase tracking-widest mb-2">Bukti Pembayaran (Foto/SS)</label>
-                    <div class="file-zone p-4 rounded-xl text-center"><input type="file" id="uploadBukti" class="hidden" accept="image/*" onchange="updateFileName('uploadBukti', 'labelBukti')"><label for="uploadBukti" id="labelBukti" class="text-xs text-gray-400 cursor-pointer">Klik untuk unggah Bukti Transaksi</label></div>
-                </div>
-                <div id="bannerUploadContainer">
-                    <label class="block text-[9px] text-gray-500 uppercase tracking-widest mb-2">Gambar Custom Banner (Ukuran 16:9)</label>
-                    <div class="file-zone p-4 rounded-xl text-center"><input type="file" id="uploadBanner" class="hidden" accept="image/*" onchange="updateFileName('uploadBanner', 'labelBanner')"><label for="uploadBanner" id="labelBanner" class="text-xs text-gray-400 cursor-pointer">Klik untuk unggah Gambar Utama</label></div>
-                </div>
-                <div class="bg-red-500/5 border border-red-500/20 p-4 rounded-2xl"><p class="text-[10px] text-red-400 font-bold uppercase tracking-widest mb-1">Aturan Konten:</p><p class="text-[9px] text-gray-500 leading-relaxed">Dilarang 18+, SARA, rasisme. Ukuran gambar wajib rasio 16:9 (khusus banner).</p></div>
-                <button onclick="processFinalSubmit()" id="finalSubmitBtn" class="w-full btn-luxury font-bold py-5 rounded-2xl text-xs tracking-widest uppercase">Kirim Verifikasi</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    let currentProductType = null;
-
-    function goToCustomBanner() { setActiveStep('customBannerPanel'); }
-    function goToStep1() { setActiveStep('step1'); }
-    
-    function setActiveStep(activeId) {
-        const steps = ['step1', 'customBannerPanel'];
-        steps.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) { el.classList.remove('step-active'); el.style.opacity = '0'; }
+    <script>
+        // tambahan efek random untuk particle bergerak
+        document.addEventListener('DOMContentLoaded', function() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(particle => {
+                const randomX = (Math.random() - 0.5) * 400;
+                const randomY = (Math.random() - 0.5) * 300;
+                particle.style.setProperty('--tx', randomX + 'px');
+                particle.style.setProperty('--ty', randomY + 'px');
+            });
         });
-        const target = document.getElementById(activeId);
-        if (target) { target.classList.add('step-active'); setTimeout(() => target.style.opacity = '1', 20); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    }
-    
-    function toggleFlip(e) { e.preventDefault(); document.getElementById('discordFlip').classList.toggle('flipped'); }
-    
-    function preparePayment(type) {
-        currentProductType = type;
-        document.getElementById('qrisStep1').classList.remove('hidden');
-        document.getElementById('qrisStep2').classList.add('hidden');
-        document.getElementById('uploadBukti').value = '';
-        document.getElementById('uploadBanner').value = '';
-        updateFileName('uploadBukti', 'labelBukti');
-        updateFileName('uploadBanner', 'labelBanner');
-        toggleQRIS(true);
-    }
-    
-    function toggleQRIS(show) {
-        const modal = document.getElementById('qrisModal');
-        if (show) {
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
-        } else {
-            modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 400);
-        }
-    }
-    
-    function closeModalOutside(e) { if(e.target === document.getElementById('qrisModal')) toggleQRIS(false); }
-    
-    function showConfirmationStep() {
-        document.getElementById('qrisStep1').classList.add('hidden');
-        document.getElementById('qrisStep2').classList.remove('hidden');
-    }
-    
-    function updateFileName(inputId, labelId) {
-        const input = document.getElementById(inputId);
-        const label = document.getElementById(labelId);
-        if (input.files.length > 0) {
-            label.innerText = input.files[0].name;
-            label.classList.add('text-emerald-500');
-        } else {
-            label.innerText = inputId === 'uploadBukti' ? 'Klik untuk unggah Bukti Transaksi' : 'Klik untuk unggah Gambar Utama';
-            label.classList.remove('text-emerald-500');
-        }
-    }
-    
-    const toBase64 = (file) => new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-    });
-    
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxoCh5J-0nWxgJdQYynAVRL_C9FVQl9y2wSxjh0eRANF-oIB7kRr8fZxT4krXEEhpq54w/exec';
-    
-    async function processFinalSubmit() {
-        const buktiInput = document.getElementById('uploadBukti');
-        const btn = document.getElementById('finalSubmitBtn');
-        
-        if (!buktiInput.files || !buktiInput.files[0]) {
-            alert('Harap unggah bukti pembayaran terlebih dahulu.');
-            return;
-        }
-        
-        const bannerFile = document.getElementById('uploadBanner').files[0];
-        if (!bannerFile) { alert('Untuk Custom Banner wajib upload gambar banner.'); return; }
-        const discordID = document.getElementById('inputIDBanner').value.trim();
-        if (!discordID) { alert('ID Discord wajib diisi untuk mengirim banner.'); return; }
-        const userName = document.getElementById('inputUser').value.trim() || "Tanpa Nama";
-        const userQuote = document.getElementById('inputQuote').value.trim() || "-";
-        
-        btn.innerText = "MENGIRIM DATA..."; btn.disabled = true;
-        try {
-            const buktiBase64 = await toBase64(buktiInput.files[0]);
-            const bannerBase64 = await toBase64(bannerFile);
-            const payload = {
-                productType: 'custom_banner',
-                buktiName: `BUKTI_${userName}_${Date.now()}.png`,
-                buktiType: buktiInput.files[0].type,
-                buktiContent: buktiBase64,
-                bannerName: `BANNER_${userName}_${Date.now()}.png`,
-                bannerType: bannerFile.type,
-                bannerContent: bannerBase64,
-                userName: userName,
-                userQuote: userQuote,
-                discordID: discordID,
-                price: "25000"
-            };
-            await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-            alert('✅ Permintaan Custom Banner terkirim! Proses 1x24 jam, banner akan masuk ke ID Discord Anda.');
-            toggleQRIS(false);
-            document.getElementById('inputUser').value = '';
-            document.getElementById('inputQuote').value = '';
-            document.getElementById('inputIDBanner').value = '';
-        } catch(err) { console.error(err); alert('Gagal mengirim data. Cek koneksi.'); }
-        finally { btn.innerText = "Kirim Verifikasi"; btn.disabled = false; }
-    }
-    
-    window.addEventListener('DOMContentLoaded', () => {
-        setActiveStep('step1');
-    });
-</script>
+    </script>
 </body>
 </html>
