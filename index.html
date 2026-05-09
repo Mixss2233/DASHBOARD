@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>P3TO STORE OFFICIAL</title>
+    <title>P3TO STORE OFFICIAL | Top Up PV & Custom Banner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
@@ -42,7 +42,6 @@
             border-bottom: 1px solid var(--emerald-solid);
             box-shadow: 0 10px 15px -10px var(--emerald-glow);
         }
-        /* Perbaikan dropdown */
         select.input-noir {
             background-color: #0a0a0a;
             color: #ffffff;
@@ -59,10 +58,6 @@
             background-color: #111111;
             color: #ffffff;
             padding: 0.5rem;
-        }
-        select.input-noir:focus {
-            outline: none;
-            border-bottom-color: #10b981;
         }
         .btn-apex {
             background: #ffffff;
@@ -120,10 +115,20 @@
             background: rgba(255,255,255,0.02);
         }
         .file-drop:hover { border-color: var(--emerald-solid); background: rgba(16, 185, 129, 0.05); }
-        /* Deskripsi produk styling */
         .product-description {
             background: linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(0,0,0,0.4) 100%);
             border-left: 3px solid #10b981;
+        }
+        .price-option {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .price-option:hover, .price-option.active {
+            border-color: #10b981;
+            background: rgba(16,185,129,0.1);
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -143,24 +148,24 @@
     </div>
 </section>
 
-<!-- STEP 2: KATALOG PRODUK (PILIHAN) -->
+<!-- STEP 2: KATALOG PRODUK -->
 <section id="stepCatalog" class="step-container min-h-screen py-24 px-6 md:px-12 flex-col justify-center items-center">
     <div class="max-w-6xl mx-auto w-full">
         <div class="text-center mb-16">
             <p class="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-2">Pilih Layanan</p>
-            <h2 class="text-5xl font-black tracking-tight">Dua Katalog Premium</h2>
+            <h2 class="text-5xl font-black tracking-tight">Dua Layanan Premium</h2>
         </div>
         <div class="grid md:grid-cols-2 gap-10">
             <div onclick="goToCustomBanner()" class="catalog-card rounded-3xl p-8 text-center group transition-all">
                 <div class="text-6xl mb-6">🎨</div>
                 <h3 class="text-2xl font-bold mb-3">Custom Banner Discord</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">Buat banner sesuai imajinasimu. Upload gambar custom + request kata mutiara. 100% Limited</p>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">Buat banner sesuai imajinasimu. Upload gambar custom + request kata mutiara. 100% Limited & Exclusive</p>
                 <div class="inline-block border border-emerald-500/40 rounded-full px-6 py-2 text-emerald-400 text-sm font-semibold">Cek Produk</div>
             </div>
-            <div onclick="goToPvMachine()" class="catalog-card rounded-3xl p-8 text-center group transition-all">
-                <div class="text-6xl mb-6">⚙️</div>
-                <h3 class="text-2xl font-bold mb-3">PV Machine</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">Hasilkan PV Tanpa Perlu AFK Voice + Hasilkan Lebih Banyak</p>
+            <div onclick="goToTopUp()" class="catalog-card rounded-3xl p-8 text-center group transition-all">
+                <div class="text-6xl mb-6">💎</div>
+                <h3 class="text-2xl font-bold mb-3">Top Up PV</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">Isi saldo PV dengan mudah. Pilih paket sesuai kebutuhan, transfer pembayaran, saldo langsung masuk!</p>
                 <div class="inline-block border border-emerald-500/40 rounded-full px-6 py-2 text-emerald-400 text-sm font-semibold">Cek Produk</div>
             </div>
         </div>
@@ -170,7 +175,7 @@
     </div>
 </section>
 
-<!-- PANEL KONFIGURASI CUSTOM BANNER (ORIGINAL FLOW) -->
+<!-- PANEL CUSTOM BANNER -->
 <section id="customBannerPanel" class="step-container min-h-screen py-24 px-6 md:px-12 lg:px-32 flex-col justify-center">
     <div class="max-w-6xl mx-auto w-full mb-8">
         <button onclick="backToCatalog()" class="text-gray-500 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-[0.3em]">← Kembali ke Katalog</button>
@@ -197,61 +202,98 @@
     </div>
 </section>
 
-<!-- PANEL KONFIGURASI PV MACHINE (RENTAL) - dengan deskripsi produk di kanan -->
-<section id="pvMachinePanel" class="step-container min-h-screen py-24 px-6 md:px-12 lg:px-32 flex-col justify-center">
+<!-- PANEL TOP UP PV -->
+<section id="topUpPanel" class="step-container min-h-screen py-24 px-6 md:px-12 lg:px-32 flex-col justify-center">
     <div class="max-w-6xl mx-auto w-full mb-8">
         <button onclick="backToCatalog()" class="text-gray-500 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-[0.3em]">← Kembali ke Katalog</button>
     </div>
     <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        <!-- Kolom kiri: form dan harga -->
+        <!-- Kolom kiri: form dan pilihan paket -->
         <div class="space-y-8">
-            <h2 class="text-4xl font-bold tracking-tight">Sewa <span class="text-emerald-500">PV Machine</span></h2>
+            <h2 class="text-4xl font-bold tracking-tight">Top Up <span class="text-emerald-500">PV</span></h2>
             <div class="space-y-8">
-                <div><label class="block text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-1">ID Discord (WAJIB)</label><input type="text" id="pvDiscordID" class="input-noir w-full" placeholder="Masukkan ID Discord milikmu"></div>
-                <div><label class="block text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-1">Pilih Durasi Sewa</label>
-                    <select id="pvDuration" class="input-noir w-full">
-                        <option value="1jam" data-price="8000">1 Jam - Rp 8.000</option>
-                        <option value="5jam" data-price="25000">5 Jam - Rp 25.000</option>
-                        <option value="8jam" data-price="35000">8 Jam - Rp 35.000</option>
-                        <option value="1hari" data-price="60000">1 Hari - Rp 60.000</option>
-                        <option value="2hari" data-price="110000">2 Hari - Rp 110.000</option>
-                        <option value="3hari" data-price="150000">3 Hari - Rp 150.000</option>
-                        <option value="30hari" data-price="500000">30 Hari - Rp 500.000</option>
-                    </select>
+                <div><label class="block text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-1">ID Discord (WAJIB)</label><input type="text" id="topupDiscordID" class="input-noir w-full" placeholder="Masukkan ID Discord milikmu"></div>
+                
+                <!-- Paket Top Up -->
+                <div><label class="block text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-3">Pilih Paket Top Up</label>
+                    <div class="grid grid-cols-2 gap-3" id="packageContainer">
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="500" data-price="5000" data-label="500 PV">
+                            <div class="text-emerald-400 text-xl font-bold">2.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 5.000</div>
+                        </div>
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="1000" data-price="15000" data-label="1.000 PV">
+                            <div class="text-emerald-400 text-xl font-bold">10.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 15.000</div>
+                            <div class="text-[9px] text-emerald-500 mt-1">⭐ Super Hemat</div>    
+                        </div>
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="3000" data-price="30000" data-label="3.000 PV">
+                            <div class="text-emerald-400 text-xl font-bold">25.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 30.000</div>
+                            <div class="text-[9px] text-emerald-500 mt-1">⭐ Bonus 5.000 PV</div>
+                        </div>
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="7000" data-price="50000" data-label="7.000 PV">
+                            <div class="text-emerald-400 text-xl font-bold">60.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 50.000</div>
+                            <div class="text-[9px] text-emerald-500 mt-1">🔥 PALING LARIS</div>
+                        </div>
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="15000" data-price="100000" data-label="15.000 PV">
+                            <div class="text-emerald-400 text-xl font-bold">150.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 100.000</div>
+                            <div class="text-[9px] text-emerald-500 mt-1">🚀 Bonus 30.000 PV</div>
+                        </div>
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="40000" data-price="250000" data-label="40.000 PV">
+                            <div class="text-emerald-400 text-xl font-bold">500.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 250.000</div>
+                            <div class="text-[9px] text-emerald-500 mt-1">💎 Sultan Deal + 100.000 PV Bonus</div>
+                        </div>
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="40000" data-price="450000" data-label="40.000 PV">
+                            <div class="text-emerald-400 text-xl font-bold">1.000.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 450.000</div>
+                            <div class="text-[9px] text-emerald-500 mt-1">💎 Ultimate Deal + 250.000 PV Bonus</div>
+                        </div>
+                        <div class="price-option p-4 rounded-2xl text-center cursor-pointer" data-pv="40000" data-price="999999" data-label="40.000 PV">
+                            <div class="text-emerald-400 text-xl font-bold">10.000.000 PV</div>
+                            <div class="text-xs text-gray-400">Rp 999.999</div>
+                            <div class="text-[9px] text-emerald-500 mt-1">👑 Crazy Sultan + Pembelian Pertama Mendapatkan 20.000.000 PV</div>
+                        </div>
+                    </div>
                 </div>
-                <div><label class="block text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-1">Catatan / Request (Opsional)</label><input type="text" id="pvNote" class="input-noir w-full" placeholder="Contoh: Auto react, dll"></div>
+                
+                <div><label class="block text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-1">Catatan (Opsional)</label><input type="text" id="topupNote" class="input-noir w-full" placeholder="Contoh: Pesan khusus atau request"></div>
             </div>
             <div class="pt-8 flex items-center justify-between border-t border-white/5">
-                <div><p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Total Pembayaran</p><p class="text-4xl font-display font-bold" id="pvTotalPrice">IDR 5.000</p></div>
-                <button onclick="preparePayment('pv_machine')" class="btn-apex font-display font-bold px-12 py-5 rounded-full text-xs tracking-widest uppercase">Bayar & Sewa</button>
+                <div><p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Total Pembayaran</p><p class="text-4xl font-display font-bold" id="topupTotalPrice">IDR 10.000</p></div>
+                <button onclick="prepareTopUpPayment()" class="btn-apex font-display font-bold px-12 py-5 rounded-full text-xs tracking-widest uppercase">Bayar Sekarang</button>
             </div>
         </div>
-        <!-- Kolom kanan: Deskripsi Produk PV Machine, bukan panduan Discord -->
+        
+        <!-- Kolom kanan: Deskripsi Produk Top Up PV -->
         <div class="bg-white/5 rounded-3xl p-8 border border-white/10 backdrop-blur-sm product-description">
             <div class="flex items-center gap-3 mb-6">
-                <div class="text-4xl">⚙️</div>
-                <h3 class="text-2xl font-display font-bold tracking-tight">PV Machine</h3>
+                <div class="text-4xl">💎</div>
+                <h3 class="text-2xl font-display font-bold tracking-tight">Top Up PV</h3>
             </div>
             <p class="text-gray-300 text-sm leading-relaxed mb-5">
-                Layanan  <span class="text-emerald-400 font-semibold"> Hasilkan  PV  Dengan  Santai</span>  Kamu  Tidak  Perlu  Diam  Di  Voice  Untuk  Menghasilkan  PV ,  Lanjutkan  Pekerjaanmu  Dan Tetap  Hasilkan  PV
+                <span class="text-emerald-400 font-semibold">Peringatan!</span> PV (Point Voice) adalah mata uang virtual untuk fitur hiburan. PV tidak memiliki nilai riil dan tidak dapat ditukarkan kembali menjadi uang tunai.
+
             </p>
             <div class="space-y-4 mt-6">
                 <div class="flex items-start gap-3">
                     <span class="text-emerald-500 text-lg">⚡</span>
-                    <div><h4 class="font-bold text-white">Menghasikan Lebih Banyak </h4><p class="text-gray-400 text-xs">Hasikan 5 PV/1 Menit, Ini Jauh Lebih Banyak Dari Non PV Machine</p></div>
+                    <div><h4 class="font-bold text-white">Proses Super Cepat</h4><p class="text-gray-400 text-xs">Setelah pembayaran dikonfirmasi, saldo PV langsung masuk ke akunmu</p></div>
                 </div>
                 <div class="flex items-start gap-3">
-                    <span class="text-emerald-500 text-lg">🔕</span>
-                    <div><h4 class="font-bold text-white">Menghasilkan PV Dengan Santai </h4><p class="text-gray-400 text-xs">Kamu Tidak Perlu Aktif Discord Atau Membuka Discord, PV Machine Tetap Berjalan Menghasilkan PV Untuk Mu! Bahka Ketika Kamu Offline Atau Tidur</p></div>
+                    <span class="text-emerald-500 text-lg">🎁</span>
+                    <div><h4 class="font-bold text-white">Bonus Pembelian Besar</h4><p class="text-gray-400 text-xs">Semakin Besar Pembelian Semakin Besar Bonus</p></div>
                 </div>
                 <div class="flex items-start gap-3">
-                    <span class="text-emerald-500 text-lg">🕒</span>
-                    <div><h4 class="font-bold text-white">Durasi Fleksibel</h4><p class="text-gray-400 text-xs">Terdapat Pilihan Paket Sewa Untuk</p></div>
+                    <span class="text-emerald-500 text-lg">🛡️</span>
+                    <div><h4 class="font-bold text-white">Aman & Terpercaya</h4><p class="text-gray-400 text-xs">Transaksi aman, data terenkripsi, support 24/7</p></div>
                 </div>
             </div>
             <div class="mt-8 pt-5 border-t border-white/10">
-                <p class="text-[10px] uppercase text-emerald-400 tracking-wider font-semibold">Garansi Layanan</p>
-                <p class="text-gray-400 text-xs mt-1">Jika terjadi kendala teknis, system akan merespon dalam 1x24 jam. Proses aktivasi maksimal 1 jam setelah pembayaran dikonfirmasi.</p>
+                <p class="text-[10px] uppercase text-emerald-400 tracking-wider font-semibold">Cara Top Up</p>
+                <p class="text-gray-400 text-xs mt-2">1. Pilih paket PV yang diinginkan<br>2. Masukkan ID Discord kamu<br>3. Klik "Bayar Sekarang" & upload bukti transfer<br>4. Saldo PV akan masuk otomatis setelah verifikasi</p>
             </div>
         </div>
     </div>
@@ -277,7 +319,8 @@
                 <div><label class="block text-[9px] text-gray-500 uppercase tracking-widest mb-2">Bukti Pembayaran (Foto/SS)</label>
                     <div class="file-drop"><input type="file" id="uploadBukti" class="hidden" accept="image/*" onchange="updateFileName('uploadBukti', 'labelBukti')"><label for="uploadBukti" id="labelBukti" class="text-xs text-gray-400 cursor-pointer">Klik untuk unggah Bukti Transaksi</label></div>
                 </div>
-                <div id="bannerUploadContainer"><label class="block text-[9px] text-gray-500 uppercase tracking-widest mb-2">Gambar Custom Banner (Ukuran 16:9)</label>
+                <div id="bannerUploadContainer">
+                    <label class="block text-[9px] text-gray-500 uppercase tracking-widest mb-2">Gambar Custom Banner (Ukuran 16:9)</label>
                     <div class="file-drop"><input type="file" id="uploadBanner" class="hidden" accept="image/*" onchange="updateFileName('uploadBanner', 'labelBanner')"><label for="uploadBanner" id="labelBanner" class="text-xs text-gray-400 cursor-pointer">Klik untuk unggah Gambar Utama</label></div>
                 </div>
                 <div class="bg-red-500/5 border border-red-500/20 p-4 rounded-2xl"><p class="text-[10px] text-red-400 font-bold uppercase tracking-widest mb-1">Aturan Konten:</p><p class="text-[9px] text-gray-500 leading-relaxed" id="rulesText">Dilarang 18+, SARA, rasisme. Ukuran gambar wajib rasio 16:9 (khusus banner).</p></div>
@@ -289,31 +332,42 @@
 
 <script>
     // GLOBAL STATE
-    let currentProductType = null;      // 'custom_banner' or 'pv_machine'
-    let currentPVPrice = 5000;
-    let currentPVDurationLabel = "1jam";
+    let currentProductType = null;      // 'custom_banner' or 'topup_pv'
+    let currentSelectedPv = 500;
+    let currentSelectedPrice = 10000;
+    let currentSelectedLabel = "500 PV";
+
+    // DOM elements
+    const topupDiscordID = document.getElementById('topupDiscordID');
+    const topupNote = document.getElementById('topupNote');
+    const topupTotalSpan = document.getElementById('topupTotalPrice');
     
-    // DOM elements references
-    const pvDurationSelect = document.getElementById('pvDuration');
-    const pvTotalSpan = document.getElementById('pvTotalPrice');
+    // Package selection handler
+    function initPackageSelection() {
+        const packages = document.querySelectorAll('.price-option');
+        packages.forEach(pkg => {
+            pkg.addEventListener('click', function() {
+                packages.forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                currentSelectedPv = parseInt(this.getAttribute('data-pv'));
+                currentSelectedPrice = parseInt(this.getAttribute('data-price'));
+                currentSelectedLabel = this.getAttribute('data-label');
+                topupTotalSpan.innerText = `IDR ${currentSelectedPrice.toLocaleString('id-ID')}`;
+            });
+        });
+        // Set default active
+        if(packages[0]) packages[0].classList.add('active');
+    }
     
     // STEP NAVIGATION
-    function goToProductCatalog() {
-        setActiveStep('stepCatalog');
-    }
-    function goToCustomBanner() {
-        setActiveStep('customBannerPanel');
-    }
-    function goToPvMachine() {
-        setActiveStep('pvMachinePanel');
-    }
-    function backToCatalog() {
-        setActiveStep('stepCatalog');
-    }
+    function goToProductCatalog() { setActiveStep('stepCatalog'); }
+    function goToCustomBanner() { setActiveStep('customBannerPanel'); }
+    function goToTopUp() { setActiveStep('topUpPanel'); }
+    function backToCatalog() { setActiveStep('stepCatalog'); }
     function goToStep1() { setActiveStep('step1'); }
     
     function setActiveStep(activeId) {
-        const steps = ['step1', 'stepCatalog', 'customBannerPanel', 'pvMachinePanel'];
+        const steps = ['step1', 'stepCatalog', 'customBannerPanel', 'topUpPanel'];
         steps.forEach(id => {
             const el = document.getElementById(id);
             if (el) { el.classList.remove('step-active'); el.style.opacity = '0'; }
@@ -322,18 +376,9 @@
         if (target) { target.classList.add('step-active'); setTimeout(() => target.style.opacity = '1', 20); window.scrollTo({ top: 0, behavior: 'smooth' }); }
     }
     
-    function updatePVPrice() {
-        const selected = pvDurationSelect.options[pvDurationSelect.selectedIndex];
-        const price = parseInt(selected.getAttribute('data-price'));
-        currentPVPrice = price;
-        currentPVDurationLabel = selected.value;
-        pvTotalSpan.innerText = `IDR ${currentPVPrice.toLocaleString('id-ID')}`;
-    }
-    if(pvDurationSelect) pvDurationSelect.addEventListener('change', updatePVPrice);
-    updatePVPrice();
-    
     function toggleFlip(e) { e.preventDefault(); document.getElementById('discordFlip').classList.toggle('flipped'); }
     
+    // Payment preparation based on product type
     function preparePayment(type) {
         currentProductType = type;
         const step1Div = document.getElementById('qrisStep1');
@@ -347,14 +392,24 @@
         
         const bannerContainer = document.getElementById('bannerUploadContainer');
         const rulesText = document.getElementById('rulesText');
-        if (type === 'pv_machine') {
+        
+        if (type === 'topup_pv') {
             bannerContainer.style.display = 'none';
-            rulesText.innerText = 'Upload bukti pembayaran yang valid. Untuk PV Machine, tidak perlu upload gambar banner.';
+            rulesText.innerText = 'Upload bukti pembayaran yang valid. Setelah verifikasi, PV akan langsung ditambahkan ke ID Discord Anda.';
         } else {
             bannerContainer.style.display = 'block';
             rulesText.innerText = 'Dilarang 18+, SARA, rasisme. Ukuran gambar wajib rasio 16:9 (khusus banner custom).';
         }
         toggleQRIS(true);
+    }
+    
+    function prepareTopUpPayment() {
+        const discordID = topupDiscordID.value.trim();
+        if (!discordID) {
+            alert('❌ ID Discord WAJIB diisi! Silakan masukkan ID Discord Anda.');
+            return;
+        }
+        preparePayment('topup_pv');
     }
     
     function toggleQRIS(show) {
@@ -367,6 +422,7 @@
             setTimeout(() => modal.style.display = 'none', 400);
         }
     }
+    
     function closeModalOutside(e) { if(e.target === document.getElementById('qrisModal')) toggleQRIS(false); }
     
     function showConfirmationStep() {
@@ -439,46 +495,42 @@
             } catch(err) { console.error(err); alert('Gagal mengirim data. Cek koneksi.'); }
             finally { btn.innerText = "Kirim Verifikasi"; btn.disabled = false; }
         } 
-        else if (currentProductType === 'pv_machine') {
-            const discordID = document.getElementById('pvDiscordID').value.trim();
-            if (!discordID) { alert('ID Discord WAJIB diisi untuk menyewa PV Machine.'); return; }
-            const catatan = document.getElementById('pvNote').value.trim() || "-";
-            const durationText = pvDurationSelect.options[pvDurationSelect.selectedIndex].text;
-            const durationValue = currentPVDurationLabel;
-            const totalPrice = currentPVPrice;
+        else if (currentProductType === 'topup_pv') {
+            const discordID = topupDiscordID.value.trim();
+            if (!discordID) { alert('ID Discord WAJIB diisi untuk Top Up PV.'); return; }
+            const catatan = topupNote.value.trim() || "-";
             
-            btn.innerText = "PROSES SEWA..."; btn.disabled = true;
+            btn.innerText = "PROSES TOP UP..."; btn.disabled = true;
             try {
                 const buktiBase64 = await toBase64(buktiInput.files[0]);
                 const dummyBannerBase64 = getPlaceholderBase64();
                 const payload = {
-                    productType: 'pv_machine',
-                    buktiName: `PVBUKTI_${discordID}_${Date.now()}.png`,
+                    productType: 'topup_pv',
+                    buktiName: `TOPUP_${discordID}_${Date.now()}.png`,
                     buktiType: buktiInput.files[0].type,
                     buktiContent: buktiBase64,
-                    bannerName: `PV_DUMMY_${discordID}.png`,
+                    bannerName: `TOPUP_DUMMY_${discordID}.png`,
                     bannerType: 'image/png',
                     bannerContent: dummyBannerBase64,
                     discordID: discordID,
-                    duration: durationValue,
-                    durationLabel: durationText,
-                    price: totalPrice.toString(),
-                    catatan: catatan,
-                    userName: "PV_Machine_User"
+                    pvAmount: currentSelectedPv.toString(),
+                    price: currentSelectedPrice.toString(),
+                    packageLabel: currentSelectedLabel,
+                    catatan: catatan
                 };
                 await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-                alert(`✅ Sewa PV Machine berhasil dikonfirmasi!\nDurasi: ${durationText}\nTotal: Rp ${totalPrice.toLocaleString()}\nAdmin akan memproses dalam 1x24 jam.`);
+                alert(`✅ Top Up PV berhasil dikirim!\n📦 Paket: ${currentSelectedLabel}\n💰 Total: Rp ${currentSelectedPrice.toLocaleString()}\n⚡ PV akan ditambahkan setelah pembayaran diverifikasi.`);
                 toggleQRIS(false);
-                document.getElementById('pvDiscordID').value = '';
-                document.getElementById('pvNote').value = '';
-                pvDurationSelect.selectedIndex = 0; updatePVPrice();
-            } catch(err) { console.error(err); alert('Terjadi error saat mengirim pesanan PV Machine.'); }
+                topupDiscordID.value = '';
+                topupNote.value = '';
+            } catch(err) { console.error(err); alert('Terjadi error saat mengirim pesanan Top Up.'); }
             finally { btn.innerText = "Kirim Verifikasi"; btn.disabled = false; }
         }
     }
     
     window.addEventListener('DOMContentLoaded', () => {
         setActiveStep('step1');
+        initPackageSelection();
         if(document.getElementById('inputIDBanner')) document.getElementById('inputIDBanner').value = '';
     });
 </script>
